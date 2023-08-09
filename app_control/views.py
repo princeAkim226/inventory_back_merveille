@@ -263,7 +263,7 @@ class PurchaseView(ModelViewSet):
 class InventoryCSVLoaderView(ModelViewSet):
     http_method_names = ('post',)
     queryset = InventoryView.queryset
-    permission_classes = (IsAuthenticatedCustom,)
+ 
     serializer_class = InventorySerializer
 
     def create(self, request, *args, **kwargs):
