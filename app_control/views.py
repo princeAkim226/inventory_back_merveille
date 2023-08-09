@@ -261,7 +261,7 @@ class PurchaseView(ModelViewSet):
 
 
 class InventoryCSVLoaderView(ModelViewSet):
-    http_method_names = ('get',)
+    http_method_names = ('post',)
     queryset = InventoryView.queryset
  
     serializer_class = InventorySerializer
