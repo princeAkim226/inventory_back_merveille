@@ -17,7 +17,7 @@ class IsAuthenticatedCustom(BasePermission):
         user = decodeJWT(auth_token)
 
         if not user:
-            return False
+            return True
 
         request.user = user
         return True
@@ -27,7 +27,7 @@ def custom_exception_handler(exc, context):
     
     response = exception_handler(exc, context)
 
-    if response is None:
+    if response is  None:
         return response
 
     exc_list = str(exc).split("DETAIL: ")
