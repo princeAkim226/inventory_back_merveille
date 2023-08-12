@@ -263,12 +263,12 @@ class PurchaseView(ModelViewSet):
 class InventoryCSVLoaderView(ModelViewSet):
     http_method_names = ('post',)
     queryset = InventoryView.queryset
- 
+    # permission_classes = (IsAuthenticatedCustom,)
     serializer_class = InventorySerializer
 
     def create(self, request, *args, **kwargs):
         try:
-            data = request.FILES['data']
+            data = request.FILES["data"]
         except Exception as e:
             raise Exception("You need to provide inventory CSV 'data'")
 
@@ -281,12 +281,19 @@ class InventoryCSVLoaderView(ModelViewSet):
                     continue
                 inventory_items.append(
                     {
-                        "group_id": row[0],
+                        # "Libelle": row[0],
+                        # "Quantite": row[1],
+                        # "Prix Unitaire": row[2],
+                        # "Prix Total": row[3],
+
+                        "name": row[0],
                         "total": row[1],
-                        "name": row[2],
-                        "price": row[3],
-                        "photo": row[4],
-                        
+                        "price": row[2],
+                        #  "group_id": row[3],
+                        "created_by_id": 1
+                        #   request.user.id
+                        # "photo": row[4],
+                        # "created_by_id": row[4]
                     }
                 )
         except csv.Error as e:
