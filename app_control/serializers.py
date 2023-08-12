@@ -6,7 +6,7 @@ from rest_framework import serializers
 
 class InventoryGroupSerializer(serializers.ModelSerializer):
     created_by = CustomUserSerializer(read_only=True)
-    created_by_id = serializers.CharField(write_only=True, required=False)
+    created_by_id = serializers.CharField(write_only=False, required=False)
     belongs_to = serializers.SerializerMethodField(read_only=True)
     belongs_to_id = serializers.CharField(write_only=True, required=False)
     total_items = serializers.CharField(read_only=True, required=False)
@@ -25,7 +25,7 @@ class InventorySerializer(serializers.ModelSerializer):
     created_by = CustomUserSerializer(read_only=True)
     created_by_id = serializers.CharField(write_only=True, required=False)
     group = InventoryGroupSerializer(read_only=True)
-    group_id = serializers.CharField(write_only=True)
+    group_id = serializers.CharField(write_only=True,required=False)
 
     class Meta:
         model = Inventory
